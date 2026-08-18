@@ -1,0 +1,7 @@
+node_modules
+.next
+out
+coverage
+storybook-static
+.env*.local
+.DS_Store
