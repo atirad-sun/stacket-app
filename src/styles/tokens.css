@@ -1,0 +1,103 @@
+:root,
+[data-theme="light"] {
+  --bg: #FFFFFF;
+  --surface: #F3F5F8;
+  --surface-2: #E9ECF1;
+  --surface-3: #DFE3EA;
+  --border: #E4E7EC;
+  --border-strong: #CBD2DC;
+  --border-input: #8C95A5;
+
+  --text: #0B0D12;
+  --text-2: #2B3240;
+  --text-soft: #59616F;
+  --muted: #606A7C;
+  --muted-text: #606A7C;
+  --muted-3: #A2AAB8;
+
+  --primary: #00A98A;
+  --primary-border: #00907A;
+  --accent: #00907A;
+  --accent-text: #007564;
+  --on-primary: #0B0D12;
+  --primary-tint: rgba(0, 169, 138, 0.12);
+  --accent-tint: rgba(0, 169, 138, 0.10);
+
+  --pos: #059669;
+  --pos-text: #047857;
+  --pos-tint: rgba(5, 150, 105, 0.10);
+  --neg: #E11D48;
+  --neg-text: #BE123C;
+  --neg-tint: rgba(225, 29, 72, 0.08);
+  --warn: #B45309;
+  --warn-text: #B45309;
+  --warn-tint: rgba(245, 158, 11, 0.14);
+
+  --scrim: rgba(11, 13, 18, 0.42);
+  --focus-ring: #007564;
+
+  /* Near-black, not white: #FFFFFF on #00A98A is 2.98:1 and fails AA. */
+}
+
+[data-theme="dark"] {
+  --bg: #0A0E16;
+  --surface: #151B26;
+  --surface-2: #1C2430;
+  --surface-3: #232C3A;
+  --border: #232B38;
+  --border-strong: #334155;
+  --border-input: #5A6980;
+
+  --text: #F1F5F9;
+  --text-2: #CBD5E1;
+  --text-soft: #94A3B8;
+  --muted: #64748B;
+  --muted-text: #8593A8;
+  --muted-3: #475569;
+
+  --primary: #00A98A;
+  --primary-border: #00A98A;
+  --accent: #2DD4BF;
+  --accent-text: #2DD4BF;
+  --on-primary: #04150F;
+  --primary-tint: rgba(0, 169, 138, 0.15);
+  --accent-tint: rgba(45, 212, 191, 0.12);
+
+  --pos: #34D399;
+  --pos-text: #34D399;
+  --pos-tint: rgba(52, 211, 153, 0.14);
+  --neg: #F87171;
+  --neg-text: #F87171;
+  --neg-tint: rgba(248, 113, 113, 0.12);
+  --warn: #FBBF24;
+  --warn-text: #FBBF24;
+  --warn-tint: rgba(251, 191, 36, 0.13);
+
+  --scrim: rgba(0, 0, 0, 0.6);
+  --focus-ring: #2DD4BF;
+}
+
+/*
+  Two ramps, deliberately.
+
+  --primary / --accent / --pos / --neg / --warn  are brand colours. Use them for
+  fills, borders, icons, and text at 24px+ (or 19px+ bold). They are the mockup
+  values, unchanged.
+
+  --accent-text / --pos-text / --neg-text / --warn-text / --muted-text  are the
+  only colours permitted for text below 24px. In light theme several brand
+  values measure under 4.5:1 on white (brand teal is 2.98:1) and would fail
+  WCAG AA as body text.
+
+  --border is decorative hairline. Any border that is the sole visual indicator
+  of a control boundary (inputs, checkboxes, focus targets) uses --border-input,
+  which meets the 3:1 non-text contrast floor. Filled primary buttons carry
+  --primary-border for the same reason: a #00A98A fill on a white page is
+  2.98:1, under the 3:1 boundary floor.
+
+  --on-primary is near-black in BOTH themes. The mockup used white in light,
+  which measures 2.98:1 on the teal fill and fails AA on the product's most
+  important call to action. The brand fill is unchanged; only the label flipped.
+
+  Enforced by src/styles/__tests__/tokens.contrast.test.ts.
+*/
