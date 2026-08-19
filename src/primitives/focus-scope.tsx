@@ -56,5 +56,5 @@ export function FocusScope({ active, onEscape, children }: FocusScopeProps) {
     return () => document.removeEventListener('keydown', onKeyDown, true);
   }, [active, onEscape]);
 
-  return <div ref={ref}>{children}</div>;
+  return <div ref={ref} className="contents">{children}</div>;
 }

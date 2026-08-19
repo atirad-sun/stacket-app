@@ -48,7 +48,7 @@ describe('Overlay', () => {
   });
 
   it('has no accessibility violations', async () => {
-    const { container } = render(<Fixture open onClose={vi.fn()} />);
-    expect(await axe(container)).toHaveNoViolations();
+    render(<Fixture open onClose={vi.fn()} />);
+    expect(await axe(document.body)).toHaveNoViolations();
   });
 });
