@@ -51,7 +51,8 @@ describe.each([
     expect(contrastRatio(theme[label], theme[fill])).toBeGreaterThanOrEqual(4.5);
   });
 
-  it.each(NON_TEXT_BOUNDARY_TOKENS)('--%s meets the 3:1 non-text floor on --bg', (token) => {
+  it.each(NON_TEXT_BOUNDARY_TOKENS)('--%s meets the 3:1 non-text floor on --bg and --surface', (token) => {
     expect(contrastRatio(theme[token], theme.bg)).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(theme[token], theme.surface)).toBeGreaterThanOrEqual(3);
   });
 });

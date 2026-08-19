@@ -6,7 +6,7 @@
   --surface-3: #DFE3EA;
   --border: #E4E7EC;
   --border-strong: #CBD2DC;
-  --border-input: #8C95A5;
+  --border-input: #7C8595;
 
   --text: #0B0D12;
   --text-2: #2B3240;
@@ -88,6 +88,10 @@
   only colours permitted for text below 24px. In light theme several brand
   values measure under 4.5:1 on white (brand teal is 2.98:1) and would fail
   WCAG AA as body text.
+
+  --muted is for large text (24px+), icons, and decorative use only — in dark
+  theme it measures 4.06:1 on --bg and fails the 4.5:1 body floor. --muted-text
+  is the only muted colour safe for body-size text.
 
   --border is decorative hairline. Any border that is the sole visual indicator
   of a control boundary (inputs, checkboxes, focus targets) uses --border-input,
