@@ -1,0 +1,21 @@
+/* Unlayered on purpose: this is a safety/accessibility enforcement rule, not a
+   presentational default. `:where()` keeps its specificity at zero so it's easy
+   to layer on top of, but its protective value comes from staying OUTSIDE
+   @layer — that means it always wins over Tailwind utilities a future
+   component might apply (e.g. an accidental `outline-none`), which is exactly
+   what "focus never removed" requires. Do not wrap this in @layer. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .tap-target {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
