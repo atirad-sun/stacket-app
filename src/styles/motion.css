@@ -1,0 +1,31 @@
+:root {
+  --duration-enter: 200ms;
+  --duration-exit: 130ms;
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+@layer components {
+  .motion-enter {
+    transition-property: transform, opacity;
+    transition-duration: var(--duration-enter);
+    transition-timing-function: var(--ease-enter);
+  }
+
+  .motion-exit {
+    transition-property: transform, opacity;
+    transition-duration: var(--duration-exit);
+    transition-timing-function: var(--ease-exit);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
