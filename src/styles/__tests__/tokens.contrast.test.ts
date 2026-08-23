@@ -21,7 +21,7 @@ const LARGE_OR_GRAPHIC_TOKENS = ['accent', 'pos', 'neg', 'warn'];
 const FILL_LABEL_PAIRS: Array<[string, string]> = [['primary', 'on-primary']];
 
 // Boundaries that are the sole visual indicator of a control.
-const NON_TEXT_BOUNDARY_TOKENS = ['border-input', 'primary-border'];
+const NON_TEXT_BOUNDARY_TOKENS = ['border-input', 'primary-border', 'focus-ring'];
 
 const ALL = [
   ...BODY_TEXT_TOKENS, ...LARGE_OR_GRAPHIC_TOKENS, ...NON_TEXT_BOUNDARY_TOKENS,

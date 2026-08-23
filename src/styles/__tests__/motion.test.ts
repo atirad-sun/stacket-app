@@ -10,6 +10,28 @@ function ms(name: string): number {
   return Number(match![1]);
 }
 
+// Extracts the contents of every brace-balanced block whose opening matches
+// `openPattern` (which must end at the opening `{`). Unlike a lazy regex
+// (`\{([\s\S]*?)\n\}`), this correctly stops at the block's own matching
+// closing brace regardless of indentation, so it won't swallow sibling
+// rules that happen to share the outer block's indent level.
+function extractBraceBalancedBlocks(source: string, openPattern: RegExp): string[] {
+  const blocks: string[] = [];
+  const pattern = new RegExp(openPattern.source, openPattern.flags.includes('g') ? openPattern.flags : `${openPattern.flags}g`);
+  for (const match of source.matchAll(pattern)) {
+    const start = match.index! + match[0].length;
+    let depth = 1;
+    let i = start;
+    while (i < source.length && depth > 0) {
+      if (source[i] === '{') depth++;
+      else if (source[i] === '}') depth--;
+      i++;
+    }
+    blocks.push(source.slice(start, i - 1));
+  }
+  return blocks;
+}
+
 describe('motion layer', () => {
   it('keeps enter duration within 150-300ms', () => {
     const enter = ms('duration-enter');
@@ -28,7 +50,7 @@ describe('motion layer', () => {
     expect(css).toMatch(/--ease-exit:\s*cubic-bezier\(0\.4,\s*0,\s*1,\s*1\)/);
   });
 
-  it('animates only transform and opacity', () => {
+  it('animates only transform and opacity via transitions', () => {
     const properties = [...css.matchAll(/transition-property:\s*([^;]+);/g)]
       .map((m) => m[1]);
     expect(properties.length).toBeGreaterThan(0);
@@ -36,6 +58,18 @@ describe('motion layer', () => {
       for (const property of list.split(',').map((p) => p.trim())) {
         expect(['transform', 'opacity']).toContain(property);
       }
+    }
+  });
+
+  it('animates only transform and opacity via @keyframes', () => {
+    const keyframeBlocks = extractBraceBalancedBlocks(css, /@keyframes\s+[\w-]+\s*\{/g);
+    expect(keyframeBlocks.length).toBeGreaterThan(0);
+    const declaredProperties = keyframeBlocks.flatMap((block) =>
+      [...block.matchAll(/([\w-]+)\s*:\s*[^;]+;/g)].map((m) => m[1]),
+    );
+    expect(declaredProperties.length).toBeGreaterThan(0);
+    for (const property of declaredProperties) {
+      expect(['opacity', 'transform']).toContain(property);
     }
   });
 

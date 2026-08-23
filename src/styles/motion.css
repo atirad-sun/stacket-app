@@ -7,9 +7,14 @@
 
 @layer components {
   .motion-enter {
-    transition-property: transform, opacity;
-    transition-duration: var(--duration-enter);
-    transition-timing-function: var(--ease-enter);
+    animation: motion-enter-kf var(--duration-enter) var(--ease-enter) both;
+  }
+
+  @keyframes motion-enter-kf {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
   }
 
   .motion-exit {

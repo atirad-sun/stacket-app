@@ -1,3 +1,5 @@
+import { VisuallyHidden } from './visually-hidden';
+
 export type DataState<T> =
   | { status: 'loading' }
   | { status: 'empty' }
@@ -23,6 +25,7 @@ export function DataBoundary<T>({
   if (state.status === 'loading') {
     return (
       <div role="status" aria-busy="true" aria-live="polite">
+        <VisuallyHidden>กำลังโหลด</VisuallyHidden>
         {skeleton}
       </div>
     );
@@ -35,6 +38,7 @@ export function DataBoundary<T>({
       <div role="alert" className="flex flex-col items-start gap-3">
         <p className="text-body text-text-2">{state.message}</p>
         <button
+          type="button"
           onClick={state.retry}
           className="tap-target rounded-lg bg-primary px-4 text-label text-on-primary"
         >
@@ -52,5 +56,10 @@ export function DataBoundary<T>({
     );
   }
 
-  return <>{children(state.data)}</>;
+  if (state.status === 'ready') {
+    return <>{children(state.data)}</>;
+  }
+
+  const exhaustiveCheck: never = state;
+  return exhaustiveCheck;
 }

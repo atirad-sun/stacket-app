@@ -24,6 +24,7 @@ describe('DataBoundary', () => {
   it('announces loading to assistive technology', () => {
     render(<Fixture state={{ status: 'loading' }} />);
     expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.getByText('กำลังโหลด')).toBeInTheDocument();
   });
 
   it('renders the caller-supplied empty state', () => {
@@ -35,6 +36,7 @@ describe('DataBoundary', () => {
     const retry = vi.fn();
     render(<Fixture state={{ status: 'error', message: 'เชื่อมต่อไม่สำเร็จ', retry }} />);
     expect(screen.getByRole('alert')).toHaveTextContent('เชื่อมต่อไม่สำเร็จ');
+    expect(screen.getByRole('button', { name: 'ลองอีกครั้ง' })).toHaveAttribute('type', 'button');
     await userEvent.click(screen.getByRole('button', { name: 'ลองอีกครั้ง' }));
     expect(retry).toHaveBeenCalledOnce();
   });
