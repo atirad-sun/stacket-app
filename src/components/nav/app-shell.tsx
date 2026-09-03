@@ -137,7 +137,11 @@ export function AppShell({
             <a
               key={item.key}
               href={item.href}
-              className="flex items-center gap-3 rounded-lg px-3 py-3 text-label text-text"
+              aria-current={item.key === activeKey ? 'page' : undefined}
+              className={cn(
+                'flex items-center gap-3 rounded-lg px-3 py-3 text-label',
+                item.key === activeKey ? 'bg-primary-tint text-accent-text' : 'text-text',
+              )}
             >
               {item.icon}
               <span>{item.label}</span>

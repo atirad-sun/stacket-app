@@ -95,6 +95,16 @@ describe('AppShell', () => {
 
   it('cart icon shows the count badge when provided', () => {
     renderShell({ cartCount: 2 });
-    expect(screen.getByRole('link', { name: /ตะกร้า.*2/ })).toBeInTheDocument();
+    const link = screen.getByRole('link', { name: /ตะกร้า.*2/ });
+    expect(link).toBeInTheDocument();
+    expect(within(link).getByText('2')).toBeInTheDocument();
+  });
+
+  it('marks the active destination in the drawer nav with aria-current', async () => {
+    renderShell();
+    await userEvent.click(screen.getByRole('button', { name: 'เปิดเมนู' }));
+    const dialog = within(screen.getByRole('dialog'));
+    expect(dialog.getByRole('link', { name: /ค้นหา/ })).toHaveAttribute('aria-current', 'page');
+    expect(dialog.getByRole('link', { name: /พอร์ต/ })).not.toHaveAttribute('aria-current');
   });
 });
