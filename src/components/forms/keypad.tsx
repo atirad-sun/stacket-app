@@ -1,3 +1,5 @@
+'use client';
+
 export interface KeypadProps {
   onDigit: (digit: string) => void;
   onBackspace: () => void;

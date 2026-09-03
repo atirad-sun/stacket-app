@@ -1,3 +1,5 @@
+'use client';
+
 export interface CardTileProps {
   imageAlt: string;
   name: string;
@@ -14,11 +16,11 @@ export function CardTile({ imageAlt, name, subtitle, price, badge, onClick }: Ca
       onClick={onClick}
       className="flex flex-col gap-2 rounded-xl border border-border bg-bg p-3 text-left"
     >
-      <div role="img" aria-label={imageAlt} className="aspect-[3/4] rounded-lg bg-surface-2" />
-      <div className="flex items-start justify-between gap-1">
+      <span role="img" aria-label={imageAlt} className="block aspect-[3/4] rounded-lg bg-surface-2" />
+      <span className="flex items-start justify-between gap-1">
         <span className="text-label text-text">{name}</span>
         {badge}
-      </div>
+      </span>
       <span className="text-body text-muted-text">{subtitle}</span>
       <span className="text-label text-numeric text-text">{price}</span>
     </button>

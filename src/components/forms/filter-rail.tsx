@@ -1,3 +1,5 @@
+'use client';
+
 import type { FilterGroup } from './filter-sheet';
 
 export interface FilterRailProps {

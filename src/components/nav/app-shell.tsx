@@ -40,7 +40,7 @@ export function AppShell({
   const primaryTabs = navItems.filter((item) => PRIMARY_TAB_KEYS.includes(item.key));
 
   return (
-    <div className="min-h-dvh bg-bg text-text">
+    <div className="flex min-h-dvh flex-col bg-bg text-text">
       <header className="flex items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2">
           <span className="text-heading">stacket</span>
@@ -74,7 +74,7 @@ export function AppShell({
         </div>
       </header>
 
-      <div className="flex">
+      <div className="flex flex-1">
         <nav
           aria-label="เมนูหลัก"
           className="hidden w-56 shrink-0 flex-col gap-1 border-r border-border p-4 sm:flex"
@@ -100,7 +100,7 @@ export function AppShell({
           ))}
         </nav>
 
-        <main className="min-h-dvh flex-1 pb-16 sm:pb-0">{children}</main>
+        <main className="flex-1 pb-16 sm:pb-0">{children}</main>
       </div>
 
       <nav

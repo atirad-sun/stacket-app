@@ -1,3 +1,6 @@
+'use client';
+
+import { useId } from 'react';
 import { Overlay } from '@/primitives/overlay';
 
 export interface BottomSheetProps {
@@ -9,11 +12,12 @@ export interface BottomSheetProps {
 }
 
 export function BottomSheet({ open, onClose, title, description, children }: BottomSheetProps) {
+  const titleId = useId();
   return (
-    <Overlay open={open} onClose={onClose} labelledBy="bottom-sheet-title">
+    <Overlay open={open} onClose={onClose} labelledBy={titleId}>
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
-          <h2 id="bottom-sheet-title" className="text-heading">
+          <h2 id={titleId} className="text-heading">
             {title}
           </h2>
           {description ? <p className="text-body mt-1 text-muted-text">{description}</p> : null}

@@ -1,3 +1,5 @@
+'use client';
+
 export interface AmountStepperProps {
   value: number;
   onChange: (value: number) => void;

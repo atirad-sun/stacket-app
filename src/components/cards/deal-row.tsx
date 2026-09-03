@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/cn';
 
 export interface DealStatus {
@@ -44,37 +46,37 @@ export function DealRow({
       onClick={onClick}
       className="flex w-full flex-col gap-2 rounded-xl border border-border bg-bg p-4 text-left"
     >
-      <div className="flex items-center justify-between">
+      <span className="flex items-center justify-between">
         <span className="text-body text-numeric text-muted-text">{dealId}</span>
         <span className={cn('rounded-full px-2 py-0.5 text-body', TONE_CLASSES[status.tone])}>{status.label}</span>
-      </div>
-      <div className="flex items-center gap-3">
-        <div role="img" aria-label={imageAlt} className="h-14 w-14 shrink-0 rounded-lg bg-surface-2" />
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-2">
+      </span>
+      <span className="flex items-center gap-3">
+        <span role="img" aria-label={imageAlt} className="block h-14 w-14 shrink-0 rounded-lg bg-surface-2" />
+        <span className="block min-w-0 flex-1">
+          <span className="flex items-center justify-between gap-2">
             <span className="text-label text-text">{cardName}</span>
             <span className="text-body text-numeric shrink-0 text-muted-text">{relativeTimeLabel}</span>
-          </div>
+          </span>
           <span className="text-body text-muted-text">
             {role === 'buyer' ? 'คุณเป็นผู้ซื้อ' : 'คุณเป็นผู้ขาย'} · {counterpartyName}
           </span>
-          <div className="flex items-center justify-between">
+          <span className="flex items-center justify-between">
             <span className="text-label text-numeric text-text">{price}</span>
             {unreadCount ? (
               <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-pos px-1.5 text-[11px] text-on-primary text-numeric">
                 {unreadCount}
               </span>
             ) : null}
-          </div>
-        </div>
-      </div>
+          </span>
+        </span>
+      </span>
       {escrowLabel ? (
-        <div className="flex items-center gap-1.5 text-body text-pos-text">
+        <span className="flex items-center gap-1.5 text-body text-pos-text">
           <span role="img" aria-label="เงินถูกเก็บไว้ในระบบ escrow">
             🔒
           </span>
           <span>{escrowLabel}</span>
-        </div>
+        </span>
       ) : null}
     </button>
   );

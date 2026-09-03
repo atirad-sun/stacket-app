@@ -1,3 +1,6 @@
+'use client';
+
+import { useId } from 'react';
 import { Overlay } from '@/primitives/overlay';
 
 export interface DialogProps {
@@ -9,11 +12,12 @@ export interface DialogProps {
 }
 
 export function Dialog({ open, onClose, title, description, children }: DialogProps) {
+  const titleId = useId();
   return (
-    <Overlay open={open} onClose={onClose} labelledBy="dialog-title">
+    <Overlay open={open} onClose={onClose} labelledBy={titleId}>
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
-          <h2 id="dialog-title" className="text-heading">
+          <h2 id={titleId} className="text-heading">
             {title}
           </h2>
           {description ? <p className="text-body mt-1 text-muted-text">{description}</p> : null}

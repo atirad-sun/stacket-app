@@ -21,6 +21,20 @@ describe('FilterSheet', () => {
     expect(screen.getByText('สภาพ')).toBeInTheDocument();
   });
 
+  it('wires the dialog aria-labelledby to the heading id', () => {
+    render(<FilterSheet open onClose={vi.fn()} groups={groups} onApply={vi.fn()} onReset={vi.fn()} />);
+    const dialog = screen.getByRole('dialog');
+    const heading = screen.getByRole('heading', { name: 'ตัวกรอง' });
+    expect(dialog).toHaveAttribute('aria-labelledby', heading.getAttribute('id'));
+  });
+
+  it('calls onClose when Escape is pressed', async () => {
+    const onClose = vi.fn();
+    render(<FilterSheet open onClose={onClose} groups={groups} onApply={vi.fn()} onReset={vi.fn()} />);
+    await userEvent.keyboard('{Escape}');
+    expect(onClose).toHaveBeenCalled();
+  });
+
   it('calls onApply and onReset from their buttons', async () => {
     const onApply = vi.fn();
     const onReset = vi.fn();

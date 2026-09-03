@@ -1,5 +1,6 @@
 'use client';
 
+import { useId } from 'react';
 import { Overlay } from '@/primitives/overlay';
 
 export interface FilterGroup {
@@ -17,9 +18,10 @@ export interface FilterSheetProps {
 }
 
 export function FilterSheet({ open, onClose, groups, onApply, onReset }: FilterSheetProps) {
+  const titleId = useId();
   return (
-    <Overlay open={open} onClose={onClose} labelledBy="filter-sheet-title">
-      <h2 id="filter-sheet-title" className="text-heading mb-4">
+    <Overlay open={open} onClose={onClose} labelledBy={titleId}>
+      <h2 id={titleId} className="text-heading mb-4">
         ตัวกรอง
       </h2>
       <div className="flex flex-col gap-5">

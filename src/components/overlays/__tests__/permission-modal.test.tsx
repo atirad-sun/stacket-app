@@ -41,6 +41,40 @@ describe('PermissionModal', () => {
     expect(onDeny).toHaveBeenCalledOnce();
   });
 
+  it('wires the dialog aria-labelledby to the heading id', () => {
+    render(
+      <PermissionModal
+        open
+        onClose={vi.fn()}
+        icon={<span />}
+        title="อนุญาตให้ใช้กล้อง"
+        description="เพื่อสแกนการ์ดของคุณ"
+        onAllow={vi.fn()}
+        onDeny={vi.fn()}
+      />,
+    );
+    const dialog = screen.getByRole('dialog');
+    const heading = screen.getByRole('heading');
+    expect(dialog).toHaveAttribute('aria-labelledby', heading.getAttribute('id'));
+  });
+
+  it('calls onClose when Escape is pressed', async () => {
+    const onClose = vi.fn();
+    render(
+      <PermissionModal
+        open
+        onClose={onClose}
+        icon={<span />}
+        title="อนุญาตให้ใช้กล้อง"
+        description="เพื่อสแกนการ์ดของคุณ"
+        onAllow={vi.fn()}
+        onDeny={vi.fn()}
+      />,
+    );
+    await userEvent.keyboard('{Escape}');
+    expect(onClose).toHaveBeenCalled();
+  });
+
   it('accepts custom button labels', () => {
     render(
       <PermissionModal

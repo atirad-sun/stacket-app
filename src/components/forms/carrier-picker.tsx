@@ -1,3 +1,6 @@
+'use client';
+
+import { useId } from 'react';
 import { cn } from '@/lib/cn';
 
 export interface Carrier {
@@ -14,6 +17,7 @@ export interface CarrierPickerProps {
 }
 
 export function CarrierPicker({ carriers, selectedKey, onChange }: CarrierPickerProps) {
+  const groupName = useId();
   return (
     <div role="radiogroup" aria-label="ผู้ให้บริการขนส่ง" className="flex flex-col gap-2">
       {carriers.map((carrier) => (
@@ -27,7 +31,7 @@ export function CarrierPicker({ carriers, selectedKey, onChange }: CarrierPicker
           <span className="flex items-center gap-3">
             <input
               type="radio"
-              name="carrier"
+              name={groupName}
               checked={carrier.key === selectedKey}
               onChange={() => onChange(carrier.key)}
               aria-label={`${carrier.name} ${carrier.etaLabel} ${carrier.priceLabel}`}

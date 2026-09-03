@@ -24,6 +24,28 @@ describe('BottomSheet', () => {
     expect(screen.getByText('content')).toBeInTheDocument();
   });
 
+  it('wires the dialog aria-labelledby to the heading id', () => {
+    render(
+      <BottomSheet open onClose={vi.fn()} title="ยืนยันการเสนอราคา">
+        <p>content</p>
+      </BottomSheet>,
+    );
+    const dialog = screen.getByRole('dialog');
+    const heading = screen.getByRole('heading');
+    expect(dialog).toHaveAttribute('aria-labelledby', heading.getAttribute('id'));
+  });
+
+  it('calls onClose when Escape is pressed', async () => {
+    const onClose = vi.fn();
+    render(
+      <BottomSheet open onClose={onClose} title="ยืนยันการเสนอราคา">
+        <p>content</p>
+      </BottomSheet>,
+    );
+    await userEvent.keyboard('{Escape}');
+    expect(onClose).toHaveBeenCalled();
+  });
+
   it('calls onClose from the close button', async () => {
     const onClose = vi.fn();
     render(
