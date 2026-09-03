@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BottomSheet } from './bottom-sheet';
 import { Dialog } from './dialog';
+import { PermissionModal } from './permission-modal';
 
 const meta: Meta = { title: 'Overlays/BottomSheet+Dialog' };
 export default meta;
@@ -18,5 +19,19 @@ export const CenteredDialog: StoryObj = {
     <Dialog open onClose={() => {}} title="ยกเลิกข้อเสนอ?" description="การกระทำนี้ไม่สามารถย้อนกลับได้">
       <p className="text-body text-text-2">confirmation content</p>
     </Dialog>
+  ),
+};
+
+export const CameraPermission: StoryObj = {
+  render: () => (
+    <PermissionModal
+      open
+      onClose={() => {}}
+      icon={<span style={{ fontSize: 40 }}>📷</span>}
+      title="อนุญาตให้ใช้กล้อง"
+      description="เพื่อสแกนการ์ดของคุณ"
+      onAllow={() => {}}
+      onDeny={() => {}}
+    />
   ),
 };
