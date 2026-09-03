@@ -25,13 +25,16 @@
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
   --color-on-primary: var(--on-primary);
+  --color-primary-tint: var(--primary-tint);
 
   --color-pos: var(--pos);
   --color-pos-text: var(--pos-text);
+  --color-pos-tint: var(--pos-tint);
   --color-neg: var(--neg);
   --color-neg-text: var(--neg-text);
   --color-warn: var(--warn);
   --color-warn-text: var(--warn-text);
+  --color-warn-tint: var(--warn-tint);
 }
 
 html {

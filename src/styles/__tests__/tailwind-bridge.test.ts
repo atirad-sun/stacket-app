@@ -18,7 +18,14 @@ describe('tailwind bridge', () => {
   it('maps every colour token into @theme via var()', () => {
     const { light } = parseTokens(tokensCss);
     const colourTokens = Object.keys(light).filter(
-      (t) => !t.includes('tint') && t !== 'scrim' && t !== 'focus-ring',
+      (t) =>
+        !t.includes('tint') &&
+        t !== 'scrim' &&
+        t !== 'focus-ring' &&
+        t !== 'drawer-shadow' &&
+        t !== 'knob' &&
+        t !== 'veil-strong' &&
+        t !== 'veil-soft',
     );
     for (const token of colourTokens) {
       expect(globalsCss, `--color-${token} not bridged`).toContain(

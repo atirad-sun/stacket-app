@@ -36,6 +36,12 @@
   --scrim: rgba(11, 13, 18, 0.42);
   --focus-ring: #007564;
 
+  --drawer-shadow: rgba(11, 13, 18, 0.16);
+  --knob: #FFFFFF;
+  --neutral-tint: rgba(11, 13, 18, 0.06);
+  --veil-strong: rgba(255, 255, 255, 0.96);
+  --veil-soft: rgba(255, 255, 255, 0.05);
+
   /* Near-black, not white: #FFFFFF on #00A98A is 2.98:1 and fails AA. */
 }
 
@@ -75,6 +81,12 @@
 
   --scrim: rgba(0, 0, 0, 0.6);
   --focus-ring: #2DD4BF;
+
+  --drawer-shadow: rgba(0, 0, 0, 0.4);
+  --knob: #F1F5F9;
+  --neutral-tint: rgba(148, 163, 184, 0.15);
+  --veil-strong: rgba(10, 14, 22, 0.97);
+  --veil-soft: rgba(10, 14, 22, 0.06);
 }
 
 /*
