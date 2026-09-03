@@ -8,3 +8,5 @@ storybook-static
 .worktrees
 .superpowers
 tsconfig.tsbuildinfo
+.mockups
+TCGround responsive webapp mockups.zip
