@@ -27,6 +27,6 @@ describe('Keypad', () => {
 
   it('every key is a real 44px tap target', () => {
     render(<Keypad onDigit={vi.fn()} onBackspace={vi.fn()} />);
-    expect(screen.getByRole('button', { name: '5' })).toHaveClass('tap-target');
+    screen.getAllByRole('button').forEach((b) => expect(b).toHaveClass('tap-target'));
   });
 });
