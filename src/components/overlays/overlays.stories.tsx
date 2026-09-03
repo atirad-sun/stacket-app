@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { BottomSheet } from './bottom-sheet';
 import { Dialog } from './dialog';
 import { PermissionModal } from './permission-modal';
+import { OfflineBanner } from './offline-banner';
 
 const meta: Meta = { title: 'Overlays/BottomSheet+Dialog' };
 export default meta;
@@ -35,3 +36,5 @@ export const CameraPermission: StoryObj = {
     />
   ),
 };
+
+export const Offline: StoryObj = { render: () => <OfflineBanner offline /> };
