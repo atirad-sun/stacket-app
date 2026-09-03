@@ -1,0 +1,33 @@
+import { Overlay } from '@/primitives/overlay';
+
+export interface DialogProps {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  description?: string;
+  children: React.ReactNode;
+}
+
+export function Dialog({ open, onClose, title, description, children }: DialogProps) {
+  return (
+    <Overlay open={open} onClose={onClose} labelledBy="dialog-title">
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <div>
+          <h2 id="dialog-title" className="text-heading">
+            {title}
+          </h2>
+          {description ? <p className="text-body mt-1 text-muted-text">{description}</p> : null}
+        </div>
+        <button
+          type="button"
+          aria-label="ปิด"
+          onClick={onClose}
+          className="tap-target flex shrink-0 items-center justify-center rounded-full text-text-2"
+        >
+          <span aria-hidden="true">✕</span>
+        </button>
+      </div>
+      {children}
+    </Overlay>
+  );
+}

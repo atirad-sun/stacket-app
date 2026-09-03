@@ -1,0 +1,22 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { BottomSheet } from './bottom-sheet';
+import { Dialog } from './dialog';
+
+const meta: Meta = { title: 'Overlays/BottomSheet+Dialog' };
+export default meta;
+
+export const Sheet: StoryObj = {
+  render: () => (
+    <BottomSheet open onClose={() => {}} title="ยืนยันการเสนอราคา" description="ตรวจสอบก่อนส่ง">
+      <p className="text-body text-text-2">form content</p>
+    </BottomSheet>
+  ),
+};
+
+export const CenteredDialog: StoryObj = {
+  render: () => (
+    <Dialog open onClose={() => {}} title="ยกเลิกข้อเสนอ?" description="การกระทำนี้ไม่สามารถย้อนกลับได้">
+      <p className="text-body text-text-2">confirmation content</p>
+    </Dialog>
+  ),
+};
